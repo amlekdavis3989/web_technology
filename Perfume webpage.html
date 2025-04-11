@@ -1,0 +1,735 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Luxury Perfume Boutique</title>
+    <style>
+        /* Global styles */
+        body {
+            font-family: 'Playfair Display', serif;
+            margin: 0;
+            padding: 0;
+            line-height: 1.8;
+            color: #333;
+            background-color: #faf6f2;
+        }
+        
+        /* Navigation menu */
+        ul.nav-menu {
+            list-style: none;
+            background-color: #2a2a2a;
+            padding: 20px;
+            margin: 0;
+            text-align: center;
+            border-bottom: 1px solid #d4af37;
+        }
+        
+        ul.nav-menu li {
+            display: inline;
+            margin-right: 30px;
+            position: relative;
+        }
+        
+        ul.nav-menu li a {
+            text-decoration: none;
+            color: #f8f8f8;
+            font-weight: 500;
+            font-size: 1.1em;
+            padding: 8px 15px;
+            transition: all 0.3s;
+            letter-spacing: 1px;
+        }
+        
+        ul.nav-menu li a:hover {
+            color: #d4af37;
+        }
+        
+        ul.nav-menu li a:after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: 0;
+            left: 0;
+            background-color: #d4af37;
+            transition: width 0.3s;
+        }
+        
+        ul.nav-menu li a:hover:after {
+            width: 100%;
+        }
+        
+        /* Button styles */
+        .btn {
+            background-color: #2a2a2a;
+            color: #f8f8f8;
+            padding: 12px 30px;
+            border: 1px solid #d4af37;
+            border-radius: 30px;
+            cursor: pointer;
+            transition: all 0.3s;
+            font-weight: 500;
+            font-size: 1em;
+            letter-spacing: 1px;
+            margin: 10px 5px;
+        }
+        
+        .btn:hover {
+            background-color: #d4af37;
+            color: #2a2a2a;
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(212, 175, 55, 0.3);
+        }
+        
+        .btn-primary {
+            background-color: #d4af37;
+            color: #2a2a2a;
+        }
+        
+        .btn-small {
+            padding: 8px 20px;
+            font-size: 0.9em;
+        }
+        
+        /* Header styles */
+        h1 {
+            text-align: center;
+            padding: 40px 25px;
+            margin: 0;
+            color: #2a2a2a;
+            font-size: 3em;
+            letter-spacing: 2px;
+            background: linear-gradient(rgba(250, 246, 242, 0.9), rgba(250, 246, 242, 0.9)), url('https://images.unsplash.com/photo-1592945403244-b3fbafd7f539?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80');
+            background-size: cover;
+            background-position: center;
+        }
+        
+        h2 {
+            color: #2a2a2a;
+            border-bottom: 1px solid #d4af37;
+            padding-bottom: 10px;
+            margin-top: 40px;
+            font-size: 2em;
+            letter-spacing: 1px;
+        }
+        
+        h3 {
+            color: #5a4a42;
+            margin-top: 30px;
+            font-size: 1.5em;
+        }
+        
+        h4 {
+            color: #2a2a2a;
+            margin: 15px 0 10px;
+            font-size: 1.2em;
+        }
+        
+        /* Content section */
+        .content {
+            padding: 30px;
+            margin: 20px auto;
+            max-width: 1200px;
+            background-color: #fff;
+            box-shadow: 0 0 20px rgba(0,0,0,0.05);
+        }
+        
+        /* Image styles */
+        .perfume-img {
+            max-width: 100%;
+            height: 400px;
+            object-fit: cover;
+            margin: 25px 0;
+            border-radius: 5px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            transition: transform 0.5s;
+        }
+        
+        .perfume-img:hover {
+            transform: scale(1.02);
+        }
+        
+        .gallery-img {
+            height: 300px;
+        }
+        
+        /* List styles */
+        .content ul {
+            margin: 25px 0;
+            padding-left: 25px;
+            list-style-type: none;
+        }
+        
+        .content li {
+            margin-bottom: 15px;
+            padding-left: 25px;
+            position: relative;
+        }
+        
+        .content li:before {
+            content: "•";
+            color: #d4af37;
+            font-size: 1.5em;
+            position: absolute;
+            left: 0;
+            top: -5px;
+        }
+        
+        /* Pseudo-class styles */
+        a {
+            color: #5a4a42;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+        
+        a:hover {
+            color: #d4af37;
+            text-decoration: none;
+        }
+        
+        /* Special classes */
+        .highlight {
+            color: #d4af37;
+            font-weight: 600;
+        }
+        
+        .feature-box {
+            background-color: #f9f5f0;
+            border-left: 4px solid #d4af37;
+            padding: 20px;
+            margin: 25px 0;
+        }
+        
+        .price {
+            font-size: 1.3em;
+            color: #d4af37;
+            font-weight: 600;
+            margin: 10px 0;
+        }
+        
+        /* Grid for perfume display */
+        .perfume-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 30px;
+            margin: 30px 0;
+        }
+        
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 25px;
+            margin: 30px 0;
+        }
+        
+        .perfume-card {
+            border: 1px solid #eee;
+            padding: 20px;
+            border-radius: 5px;
+            transition: all 0.3s;
+        }
+        
+        .gallery-card {
+            border: 1px solid #eee;
+            padding: 15px;
+            border-radius: 5px;
+            transition: all 0.3s;
+            text-align: center;
+        }
+        
+        .perfume-card:hover, .gallery-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+        }
+        
+        /* Contact Form Styles */
+        .contact-form {
+            max-width: 600px;
+            margin: 40px auto;
+            padding: 30px;
+            background-color: #f9f5f0;
+            border-radius: 8px;
+        }
+        
+        .form-group {
+            margin-bottom: 20px;
+        }
+        
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 500;
+        }
+        
+        .form-group input,
+        .form-group textarea,
+        .form-group select {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            font-family: 'Playfair Display', serif;
+            font-size: 1em;
+        }
+        
+        .form-group textarea {
+            height: 150px;
+        }
+        
+        /* About Section Styles */
+        .about-section {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 30px;
+            margin: 40px 0;
+        }
+        
+        .about-image {
+            flex: 1;
+            min-width: 300px;
+        }
+        
+        .about-text {
+            flex: 2;
+            min-width: 300px;
+        }
+        
+        .about-image img {
+            width: 100%;
+            height: auto;
+            border-radius: 8px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+        
+        .contact-info {
+            margin-top: 30px;
+            padding: 20px;
+            background-color: #f9f5f0;
+            border-radius: 8px;
+        }
+        
+        .contact-info p {
+            margin: 10px 0;
+        }
+        
+        /* Popup Styles */
+        .popup {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0,0,0,0.7);
+            z-index: 1000;
+            justify-content: center;
+            align-items: center;
+        }
+        
+        .popup-content {
+            background-color: #fff;
+            padding: 40px;
+            border-radius: 8px;
+            text-align: center;
+            max-width: 500px;
+            position: relative;
+        }
+        
+        .close-popup {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            font-size: 1.5em;
+            cursor: pointer;
+            color: #2a2a2a;
+        }
+        
+        /* Media queries */
+        @media (max-width: 768px) {
+            ul.nav-menu li {
+                display: block;
+                margin: 15px 0;
+            }
+            
+            h1 {
+                font-size: 2em;
+                padding: 30px 15px;
+            }
+            
+            .content {
+                padding: 20px;
+                margin: 10px;
+            }
+            
+            .perfume-img {
+                height: 300px;
+            }
+            
+            .gallery-img {
+                height: 250px;
+            }
+            
+            .about-section {
+                flex-direction: column;
+            }
+        }
+    </style>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <ul class="nav-menu">
+        <li><a href="#">Home</a></li>
+        <li><a href="#">Shop</a></li>
+        <li><a href="#">Collections</a></li>
+        <li><a href="#gallery">Gallery</a></li>
+        <li><a href="#about">About</a></li>
+        <li><a href="#contact">Contact</a></li>
+    </ul>
+    
+    <h1>Essence & Elegance</h1>
+    
+    <div class="content">
+        <h2>Welcome to Our Perfume Boutique</h2>
+        
+        <div class="feature-box">
+            <p>Discover the art of fragrance with our exquisite collection of perfumes from around the world. Each scent tells a story, capturing moments and memories in every bottle.</p>
+        </div>
+        
+        <h3>Featured Collections</h3>
+        
+        <div class="perfume-grid">
+            <div class="perfume-card">
+                <img src="https://i.pinimg.com/736x/23/ba/55/23ba55b4236b3c9f32cf8e498cd09745.jpg" alt="Floral Collection" class="perfume-img">
+                <h3>Floral Essence</h3>
+                <p>A romantic bouquet of jasmine, rose, and peony with subtle woody undertones.</p>
+                <p class="price">$89.00</p>
+                <button class="btn btn-primary">Add to Cart</button>
+            </div>
+            
+            <div class="perfume-card">
+                <img src="https://i.pinimg.com/736x/f3/6d/5d/f36d5de8f02fd682732b65ae91380eac.jpg" alt="Woody Collection" class="perfume-img">
+                <h3>Woody Mystique</h3>
+                <p>Rich sandalwood, cedar, and patchouli with a hint of vanilla warmth.</p>
+                <p class="price">$95.00</p>
+                <button class="btn btn-primary">Add to Cart</button>
+            </div>
+            
+            <div class="perfume-card">
+                <img src="https://i.pinimg.com/736x/6a/fe/61/6afe6140a4291cf98d177f11716ba8dd.jpg" alt="Citrus Collection" class="perfume-img">
+                <h3>Citrus Zest</h3>
+                <p>Vibrant bergamot, lemon, and grapefruit with green tea freshness.</p>
+                <p class="price">$78.00</p>
+                <button class="btn btn-primary">Add to Cart</button>
+            </div>
+        </div>
+        
+        <h2 id="gallery">Perfume Gallery</h2>
+        <p>Explore our stunning collection of luxury fragrances through these exquisite images.</p>
+        
+        <div class="gallery-grid">
+            <!-- Perfume 1 -->
+            <div class="gallery-card">
+                <img src="https://i.pinimg.com/736x/f5/34/90/f5349008792172abde1215b245eff33f.jpg" alt="Midnight Orchid" class="perfume-img gallery-img">
+                <h4>Midnight Orchid</h4>
+                <p>Dark orchid, black amber, and vanilla</p>
+                <p class="price">$120.00</p>
+                <button class="btn btn-primary btn-small">View Details</button>
+                <button class="btn btn-small">Add to Wishlist</button>
+            </div>
+            
+            <!-- Perfume 2 -->
+            <div class="gallery-card">
+                <img src="https://i.pinimg.com/736x/c7/ae/94/c7ae94df80d84407c11a30776f726a27.jpg" alt="Golden Amber" class="perfume-img gallery-img">
+                <h4>Golden Amber</h4>
+                <p>Warm amber, saffron, and sandalwood</p>
+                <p class="price">$110.00</p>
+                <button class="btn btn-primary btn-small">View Details</button>
+                <button class="btn btn-small">Add to Wishlist</button>
+            </div>
+            
+            <!-- Perfume 3 -->
+            <div class="gallery-card">
+                <img src="https://i.pinimg.com/736x/cf/7a/d2/cf7ad22eeedda99d3344e0d6ef22bf65.jpg" alt="Rose Velvet" class="perfume-img gallery-img">
+                <h4>Rose Velvet</h4>
+                <p>Damask rose, peony, and musk</p>
+                <p class="price">$95.00</p>
+                <button class="btn btn-primary btn-small">View Details</button>
+                <button class="btn btn-small">Add to Wishlist</button>
+            </div>
+            
+            <!-- Perfume 4 -->
+            <div class="gallery-card">
+                <img src="https://i.pinimg.com/736x/6e/46/d9/6e46d92de9bdeedb1e27eb0ca57579e5.jpg" alt="Ocean Breeze" class="perfume-img gallery-img">
+                <h4>Ocean Breeze</h4>
+                <p>Sea salt, driftwood, and marine accord</p>
+                <p class="price">$85.00</p>
+                <button class="btn btn-primary btn-small">View Details</button>
+                <button class="btn btn-small">Add to Wishlist</button>
+            </div>
+            
+            <!-- Perfume 5 -->
+            <div class="gallery-card">
+                <img src="https://i.pinimg.com/736x/d7/00/d0/d700d0d5bed650c53550115cfbf67e95.jpg" alt="Vanilla Dream" class="perfume-img gallery-img">
+                <h4>Vanilla Dream</h4>
+                <p>Madagascar vanilla, tonka bean, caramel</p>
+                <p class="price">$88.00</p>
+                <button class="btn btn-primary btn-small">View Details</button>
+                <button class="btn btn-small">Add to Wishlist</button>
+            </div>
+            
+            <!-- Perfume 6 -->
+            <div class="gallery-card">
+                <img src="https://i.pinimg.com/736x/6c/49/55/6c49550f20e57fa3e4f20961905bf94a.jpg" alt="Citrus Splash" class="perfume-img gallery-img">
+                <h4>Citrus Splash</h4>
+                <p>Bergamot, lemon, and ginger</p>
+                <p class="price">$78.00</p>
+                <button class="btn btn-primary btn-small">View Details</button>
+                <button class="btn btn-small">Add to Wishlist</button>
+            </div>
+            
+            <!-- Perfume 7 -->
+            <div class="gallery-card">
+                <img src="https://i.pinimg.com/736x/2d/ff/fb/2dfffb7d32d2b649f559eb30323cc171.jpg" alt="Jasmine Noir" class="perfume-img gallery-img">
+                <h4>Jasmine Noir</h4>
+                <p>Night-blooming jasmine, patchouli, vetiver</p>
+                <p class="price">$105.00</p>
+                <button class="btn btn-primary btn-small">View Details</button>
+                <button class="btn btn-small">Add to Wishlist</button>
+            </div>
+            
+            <!-- Perfume 8 -->
+            <div class="gallery-card">
+                <img src="https://i.pinimg.com/736x/52/82/7b/52827b49b2e7f6bb2720ff96d9d50dc3.jpg" alt="Sandalwood Serenity" class="perfume-img gallery-img">
+                <h4>Sandalwood Serenity</h4>
+                <p>Aged sandalwood, cedar, and amber</p>
+                <p class="price">$115.00</p>
+                <button class="btn btn-primary btn-small">View Details</button>
+                <button class="btn btn-small">Add to Wishlist</button>
+            </div>
+            
+            <!-- Perfume 9 -->
+            <div class="gallery-card">
+                <img src="https://i.pinimg.com/736x/55/d0/9b/55d09b56d33b408ef83d6aeae09b7763.jpg" alt="Lavender Fields" class="perfume-img gallery-img">
+                <h4>Lavender Fields</h4>
+                <p>Provence lavender, vanilla, and musk</p>
+                <p class="price">$92.00</p>
+                <button class="btn btn-primary btn-small">View Details</button>
+                <button class="btn btn-small">Add to Wishlist</button>
+            </div>
+            
+            <!-- Perfume 10 -->
+            <div class="gallery-card">
+                <img src="https://i.pinimg.com/736x/4d/af/67/4daf672e80ec64cdd37c4b83128df9a2.jpg" alt="Black Cherry" class="perfume-img gallery-img">
+                <h4>Black Cherry</h4>
+                <p>Dark cherry, almond, and tonka</p>
+                <p class="price">$98.00</p>
+                <button class="btn btn-primary btn-small">View Details</button>
+                <button class="btn btn-small">Add to Wishlist</button>
+            </div>
+            
+            <!-- Perfume 11 -->
+            <div class="gallery-card">
+                <img src="https://i.pinimg.com/736x/94/24/cc/9424cca79f9a5db6b2dc4e45e763cfea.jpg" alt="White Tea" class="perfume-img gallery-img">
+                <h4>White Tea</h4>
+                <p>Fragrant tea leaves, bergamot, musk</p>
+                <p class="price">$82.00</p>
+                <button class="btn btn-primary btn-small">View Details</button>
+                <button class="btn btn-small">Add to Wishlist</button>
+            </div>
+            
+            <!-- Perfume 12 -->
+            <div class="gallery-card">
+                <img src="https://i.pinimg.com/736x/7a/e0/c8/7ae0c814cbc78b0fcfcdb459bcf9f850.jpg" alt="Peony Blush" class="perfume-img gallery-img">
+                <h4>Peony Blush</h4>
+                <p>Fresh peony, raspberry, and vanilla</p>
+                <p class="price">$90.00</p>
+                <button class="btn btn-primary btn-small">View Details</button>
+                <button class="btn btn-small">Add to Wishlist</button>
+            </div>
+            
+            <!-- Perfume 13 -->
+            <div class="gallery-card">
+                <img src="https://i.pinimg.com/736x/41/43/9a/41439a73b25cf163ca446d836221fd20.jpg" alt="Oud Royal" class="perfume-img gallery-img">
+                <h4>Oud Royal</h4>
+                <p>Rare oud wood, saffron, and amber</p>
+                <p class="price">$150.00</p>
+                <button class="btn btn-primary btn-small">View Details</button>
+                <button class="btn btn-small">Add to Wishlist</button>
+            </div>
+            
+            <!-- Perfume 14 -->
+            <div class="gallery-card">
+                <img src="https://i.pinimg.com/736x/f9/b9/04/f9b904eadfab4cad75c7aa71c27b721a.jpg" alt="Fig & Vetiver" class="perfume-img gallery-img">
+                <h4>Fig & Vetiver</h4>
+                <p>Creamy fig, green vetiver, cedar</p>
+                <p class="price">$95.00</p>
+                <button class="btn btn-primary btn-small">View Details</button>
+                <button class="btn btn-small">Add to Wishlist</button>
+            </div>
+            
+            <!-- Perfume 15 -->
+            <div class="gallery-card">
+                <img src="https://i.pinimg.com/736x/02/1b/91/021b918fc2d6491e22bec0a8ad570db0.jpg" alt="Tobacco Vanille" class="perfume-img gallery-img">
+                <h4>Tobacco Vanille</h4>
+                <p>Aged tobacco leaf, vanilla, cocoa</p>
+                <p class="price">$125.00</p>
+                <button class="btn btn-primary btn-small">View Details</button>
+                <button class="btn btn-small">Add to Wishlist</button>
+            </div>
+        </div>
+        
+        <h3>Our Signature Scents</h3>
+        <img src="https://i.pinimg.com/736x/02/67/0f/02670f335ec8c2b8d6a57e8e858fbb16.jpg" alt="Signature Perfumes" class="perfume-img">
+        <p>Our <span class="highlight">signature collection</span> represents the pinnacle of our perfumery art. Each fragrance is crafted with rare ingredients and aged to perfection. The collection includes our award-winning "Midnight Orchid" and "Golden Amber" scents that have become favorites among fragrance connoisseurs worldwide.</p>
+        
+        <img src="https://i.pinimg.com/736x/31/a9/87/31a98732e10beba370b35c31cc32e22b.jpg" alt="Perfume Making" class="perfume-img">
+        <p>The art of perfume making at our boutique combines <span class="highlight">traditional techniques</span> with modern innovation. Our master perfumers source the finest raw materials from around the globe, ensuring each creation meets our exacting standards of quality and longevity.</p>
+        
+        <h3>Why Choose Our Perfumes?</h3>
+        <ul>
+            <li><span class="highlight">Premium ingredients</span> sourced from ethical suppliers worldwide</li>
+            <li><span class="highlight">Handcrafted</span> in small batches for quality control</li>
+            <li><span class="highlight">Long-lasting</span> formulations that evolve beautifully on your skin</li>
+            <li><span class="highlight">Cruelty-free</span> and vegan options available</li>
+            <li><span class="highlight">Unique blends</span> you won't find anywhere else</li>
+            <li><span class="highlight">Expert guidance</span> from our fragrance specialists</li>
+            <li><span class="highlight">Elegant packaging</span> perfect for gifting</li>
+            <li><span class="highlight">Personalization</span> services available</li>
+            <li><span class="highlight">Loyalty program</span> with exclusive benefits</li>
+            <li><span class="highlight">Worldwide shipping</span> with careful packaging</li>
+        </ul>
+        
+        <button class="btn">Explore All Fragrances</button>
+        <button class="btn btn-primary">Book a Consultation</button>
+    </div>
+    
+    <!-- About Us Section -->
+    <div class="content" id="about">
+        <h2>About Our Boutique</h2>
+        
+        <div class="about-section">
+            <div class="about-image">
+                <img src="https://i.pinimg.com/736x/51/95/ae/5195ae390c93511e90aac03a66cd09dc.jpg" alt="Our Boutique Store">
+            </div>
+            <div class="about-text">
+                <h3>Our Story</h3>
+                <p>Founded in 2010, Essence & Elegance began as a small perfumery in Paris with a passion for creating unique, memorable fragrances. Our founder, Isabelle Laurent, a third-generation perfumer, wanted to bring the art of French perfumery to the world while maintaining the highest standards of craftsmanship.</p>
+                <p>Today, we operate boutiques in Paris, New York, and Tokyo, with our fragrances being shipped to over 50 countries worldwide. Despite our growth, we remain committed to our original values: quality, creativity, and personal service.</p>
+            </div>
+        </div>
+        
+        <div class="about-section">
+            <div class="about-text">
+                <h3>Our Craft</h3>
+                <p>Each of our perfumes is created using traditional methods combined with modern innovation. We source the finest ingredients from around the world, including rare flowers from Grasse, spices from the Middle East, and exotic woods from Southeast Asia.</p>
+                <p>Our master perfumers undergo years of training to develop their olfactory skills. They carefully balance top, middle, and base notes to create fragrances that evolve beautifully throughout the day.</p>
+            </div>
+            <div class="about-image">
+                <img src="https://i.pinimg.com/736x/54/cc/c1/54ccc1b4d4baaec622050184ef28b973.jpg" alt="Perfume Making Process">
+            </div>
+        </div>
+        
+        <div class="about-section">
+            <div class="about-image">
+                <img src="https://i.pinimg.com/736x/2d/ca/fa/2dcafad08f7dd672d0560f66fd38b746.jpg" alt="Our Team">
+            </div>
+            <div class="about-text">
+                <h3>Our Team</h3>
+                <p>Behind every bottle is a team of passionate individuals dedicated to the art of perfumery. From our master perfumers to our customer service representatives, each team member shares a deep appreciation for fragrance and a commitment to excellence.</p>
+                <p>We believe in continuous learning and regularly send our team to fragrance workshops and ingredient sourcing trips to ensure we stay at the forefront of the industry.</p>
+            </div>
+        </div>
+        
+        <div class="contact-info">
+            <h3>Contact Information</h3>
+            <p><strong>Headquarters:</strong> 123 Rue de Parfum, Paris, France</p>
+            <p><strong>Phone:</strong> +1 (555) 123-4567</p>
+            <p><strong>Email:</strong> info@essence-elegance.com</p>
+            <p><strong>Hours:</strong> Monday-Saturday: 10am-8pm</p>
+            <p><strong>Customer Service:</strong> Available 24/7 via email</p>
+        </div>
+    </div>
+    
+    <!-- Contact Us Section -->
+    <div class="content" id="contact">
+        <h2>Contact Us</h2>
+        <p>Have questions about our fragrances or need assistance with an order? Our team is here to help. Fill out the form below and we'll get back to you within 24 hours.</p>
+        
+        <div class="contact-form">
+            <form id="contactForm">
+                <div class="form-group">
+                    <label for="name">Your Name</label>
+                    <input type="text" id="name" name="name" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="email">Email Address</label>
+                    <input type="email" id="email" name="email" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="phone">Phone Number (optional)</label>
+                    <input type="tel" id="phone" name="phone">
+                </div>
+                
+                <div class="form-group">
+                    <label for="subject">Subject</label>
+                    <select id="subject" name="subject" required>
+                        <option value="">Select a subject</option>
+                        <option value="product">Product Inquiry</option>
+                        <option value="order">Order Status</option>
+                        <option value="shipping">Shipping Information</option>
+                        <option value="returns">Returns & Exchanges</option>
+                        <option value="other">Other</option>
+                    </select>
+                </div>
+                
+                <div class="form-group">
+                    <label for="message">Your Message</label>
+                    <textarea id="message" name="message" required></textarea>
+                </div>
+                
+                <button type="submit" class="btn btn-primary">Send Message</button>
+            </form>
+        </div>
+    </div>
+    
+    <!-- Thank You Popup -->
+    <div class="popup" id="thankYouPopup">
+        <div class="popup-content">
+            <span class="close-popup" onclick="closePopup()">&times;</span>
+            <h3>Thank You!</h3>
+            <p>Your message has been successfully submitted. Our team will get back to you within 24 hours.</p>
+            <p>In the meantime, why not explore our latest collections?</p>
+            <button class="btn btn-primary" onclick="closePopup()">Continue Shopping</button>
+        </div>
+    </div>
+    
+    <script>
+        // Handle form submission
+        document.getElementById('contactForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            // Here you would typically send the form data to a server
+            // For this example, we'll just show the popup
+            document.getElementById('thankYouPopup').style.display = 'flex';
+            
+            // Reset the form
+            this.reset();
+        });
+        
+        // Close popup function
+        function closePopup() {
+            document.getElementById('thankYouPopup').style.display = 'none';
+        }
+        
+        // Close popup if clicked outside
+        window.addEventListener('click', function(e) {
+            if (e.target === document.getElementById('thankYouPopup')) {
+                closePopup();
+            }
+        });
+    </script>
+</body>
+</html>
