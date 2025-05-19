@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>JS Ex 3</title>
+</head>
+<body>
+  <h1>Click Counter!</h1>
+
+  <form id="rangeForm">
+    <button type="button" onclick="FuncCheck()">Click Me</button>
+  </form>
+  <p id="msg"></p>
+
+  <script>
+    let count = 0; 
+
+    function FuncCheck() {
+      count++; 
+     
+      document.getElementById("msg").textContent = `You clicked ${count} - times`;
+    }
+  </script>
+</body>
+</html>
