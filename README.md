@@ -17,6 +17,8 @@ Perfume webpage.html
 
 calculator.html
 
+click-counter.html
+
 
 
 ## *Usage*
