@@ -15,6 +15,8 @@ lectures.html: Advanced table design using rowspan and colspan for complex table
 
 Perfume webpage.html
 
+calculator.html
+
 
 
 ## *Usage*
